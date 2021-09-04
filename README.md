@@ -1,46 +1,23 @@
-# Getting Started with Create React App
+# Web Player for MacroSilicon MS2109 Capture Cards
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I recently bought a cheap (65CNY/~10USD) capture card with MS2109 chip to play Switch games on my monitor without an HDMI switch (no pun intended).
 
-## Available Scripts
+## Vendor/Product ID
 
-In the project directory, you can run:
+* VID: 534d
+* PID: 2109
+* REV: 2100
 
-### `yarn start`
+## Spec
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Video Output: 1080p@60fps (may drop to 1080p@25fps when connected to a USB hub)
+* Audio Output: mono 16bit 96KHz (some forum posts say it supports stereo, but I can't get it to work on Windows)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Web Player
 
-### `yarn test`
+Normally I use OBS to stream the video, but requiring opening it everytime (and setting it up when port changed) is a pain. So I made this simple Web player.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Notes
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Because sometimes it can only output 1080p@25fps, the player will try 60fps first and fall back to 25fps if failed.
+2. Only tested on Chrome (Microsoft Edge) on Windows 10. Due to the specific method for finding the device, it may fail on other browsers/OSes.

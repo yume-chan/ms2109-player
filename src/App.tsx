@@ -1,25 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useCallback } from 'react';
+import styles from './App.module.css';
 
 function App() {
+  const handleVideoRef = useCallback(async (videoElement: HTMLVideoElement | null) => {
+    if (videoElement) {
+      const devices = await window.navigator.mediaDevices.enumerateDevices();
+      const video = devices.find(x => x.kind === 'videoinput' && x.label.endsWith('(534d:2109)'));
+      const audio = devices.find(x => x.kind === 'audioinput' && x.label.endsWith('(534d:2109)'));
+      let stream;
+      try {
+        stream = await window.navigator.mediaDevices.getUserMedia({
+          video: {
+            deviceId: { exact: video!.deviceId },
+            width: { exact: 1920 },
+            height: { exact: 1080 },
+            frameRate: { exact: 60 },
+          },
+          audio: {
+            groupId: {
+              exact: audio!.groupId
+            }
+          },
+        });
+      } catch {
+        stream = await window.navigator.mediaDevices.getUserMedia({
+          video: {
+            deviceId: { exact: video!.deviceId },
+            width: { exact: 1920 },
+            height: { exact: 1080 },
+            frameRate: { exact: 60 },
+          },
+          audio: {
+            groupId: {
+              exact: audio!.groupId
+            }
+          },
+        });
+      }
+      videoElement.srcObject = stream;
+    }
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <video className={styles.video} ref={handleVideoRef} autoPlay controls></video>
   );
 }
 
