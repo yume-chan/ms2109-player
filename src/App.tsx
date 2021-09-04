@@ -4,7 +4,10 @@ import styles from './App.module.css';
 function App() {
   const handleVideoRef = useCallback(async (videoElement: HTMLVideoElement | null) => {
     if (videoElement) {
-      await window.navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      {
+        const stream = await window.navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        stream.getTracks().forEach(track => track.stop());
+      }
       const devices = await window.navigator.mediaDevices.enumerateDevices();
       const video = devices.find(x => x.kind === 'videoinput' && x.label.endsWith('(534d:2109)'));
       const audio = devices.find(x => x.kind === 'audioinput' && x.label.endsWith('(534d:2109)'));
