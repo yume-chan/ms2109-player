@@ -74,8 +74,11 @@ function App() {
                 const leftOutput = outputs[0][0];
                 const rightOutput = outputs[0][1];
 
+                // Separate interleaved stereo audio into left and right channels
                 let i = 0;
                 while (i < input.length) {
+                  // Web Audio API doesn't support sample rate conversion
+                  // So we have to duplicate the samples
                   leftOutput[i] = input[i + 1];
                   leftOutput[i + 1] = input[i + 1];
 

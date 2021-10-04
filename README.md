@@ -15,7 +15,7 @@ I recently bought a cheap (65CNY/~10USD) capture card with MS2109 chip to play S
 | Video Input          | 4K 30FPS / 1080P 60FPS  |                                                     |
 | Video Output (MJPEG) | 1080P 60FPS             | May drop to 1080P 25FPS when connected to a USB Hub |
 | Video Output (YUY2)  | 1080P 5FPS / 720P 10FPS |                                                     |
-| Audio Output (LPCM)  | Mono 16bit 96KHz        | It's actually stereo 16bit 48KHz, interleaved       |
+| Audio Output (LPCM)  | Mono 16bit 96kHz        | It's actually stereo 16bit 48kHz, interleaved       |
 
 ## Use with OBS
 
