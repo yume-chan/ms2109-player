@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import styles from './App.module.css';
 
 const MODE_LIST = [
-  { width: 1920, height: 1080, frameRate: 60 },
+  { width: 1920, height: 1080, frameRate: 30 },
   // MS2109 may output 25FPS when connected to a USB hub
   { width: 1920, height: 1080, frameRate: 25 },
 ];

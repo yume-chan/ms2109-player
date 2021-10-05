@@ -10,17 +10,23 @@ I recently bought a cheap (65CNY/~10USD) capture card with MS2109 chip to play S
 
 ## Spec
 
-|                      |                         | Note                                                |
-| -------------------- | ----------------------- | --------------------------------------------------- |
-| Video Input          | 4K 30FPS / 1080P 60FPS  |                                                     |
-| Video Output (MJPEG) | 1080P 60FPS             | May drop to 1080P 25FPS when connected to a USB Hub |
-| Video Output (YUY2)  | 1080P 5FPS / 720P 10FPS |                                                     |
-| Audio Output (LPCM)  | Mono 16bit 96kHz        | It's actually stereo 16bit 48kHz, interleaved       |
+|                      |                         |
+| -------------------- | ----------------------- |
+| Video Input          | 4K 30FPS / 1080P 60FPS  |
+| Video Output (MJPEG) | 1080P 30FPS             |
+| Video Output (YUY2)  | 1080P 5FPS / 720P 10FPS |
+| Audio Output (LPCM)  | Mono 16bit 96kHz        |
+
+Notes:
+
+1. Some device claims 1080P 60FPS output support but that's fake. When selected, they still output at 30FPS.
+2. When connected to a USB hub, 1080P 30FPS mode may display a black screen (maybe due to insufficient bandwidth). Lower resolution or frame rate (for example 1080P 25FPS) may be used instead.
+3. The audio output is actually stereo 16bit 48kHz interleaved (1 sample for left channel, then 1 sample for right channel, alternating).
 
 ## Use with OBS
 
 1. Every time you remove and re-plug the device, you must re-select the "Device" in each source (or re-create all sources).
-2. If 1080P 60FPS MJPEG doesn't work (black screen), try 25FPS or another USB port. Set "Resolution" to "Highest FPS" won't work either.
+2. If 1080P 30FPS MJPEG doesn't work (black screen), try 25FPS or another USB port. Set "Resolution" to "Highest FPS" won't work either.
 3. "Audio Output Mode" option in "Video Capture Device" can be very laggy, to reduce lag:
    1. Add an "Audio Input Capture" source
    2. Set "Device" to "Digital Audio Interface (*X*- USB Digital Audio)" (where *X* may be any number)
@@ -39,7 +45,7 @@ Or you can use this web player:
 * No need to install OBS
 * No need to reconfigure after every reconnect
 * Low CPU usage
-* Automatically detect hightest FPS (60 vs 25)
+* Automatically detect hightest FPS (30 vs 25)
 * Automatically convert audio to stereo
 
 However
