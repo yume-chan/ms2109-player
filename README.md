@@ -10,7 +10,7 @@ I recently bought a cheap (65CNY/~10USD) capture card with MS2109 chip to play S
 
 ## Spec
 
-|                      |                         |
+| Key                  | Value                   |
 | -------------------- | ----------------------- |
 | Video Input          | 4K 30FPS / 1080P 60FPS  |
 | Video Output (MJPEG) | 1080P 30FPS             |
